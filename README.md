@@ -1,4 +1,4 @@
-# towxml-steam-typer
+# towxml-stream-typer
 
 ![输入图片说明](towxml_typer.gif)
 
