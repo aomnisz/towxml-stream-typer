@@ -101,8 +101,8 @@ Component({
         if (!_this.data.mdText || c >= _this.data.mdText.length) {
           return
         }
-        c++;
         const singleChar = _this.data.mdText[c];
+        c++;
         if (singleChar == undefined) {
           return
         }
