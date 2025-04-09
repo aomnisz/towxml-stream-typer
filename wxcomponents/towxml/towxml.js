@@ -37,7 +37,7 @@ Component({
     },
     speed: {
       type: Number,
-      value: 20,
+      value: 10,
     },
     isFinish: {
       type: Boolean,
