@@ -48,4 +48,4 @@ finish：当打字机打印完毕，会发送 finish 事件，你可以通过该
 finish：当打字机打印完毕，会发送 finish 事件，你可以通过该事件关闭滚动到底部的定时器等
 
 3. uniapp的简单使用示例
-[uniapp使用示例](https://gitee.com/zhou-xuxiang/towxml-steam-typer-uniapp-example)
+[uniapp使用示例](https://github.com/zhouzxx/towxml-stream-typer-uniapp-example))
