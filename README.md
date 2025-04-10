@@ -1,5 +1,11 @@
 # towxml-stream-typer
 
+> ##### 代码刚写完没多久，还在持续地完善中，所以当你下载的版本目前一定不是稳定版，记得定时更新下代码，由于markdown语法的灵活复杂性，某些情况下难免会出问题。
+
+> ##### 出问题请联系 QQ:3423729430 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 微信：zxx-zbl-wwj
+
+> ##### 非常需要你的出错案例markdown文本
+
 ![输入图片说明](towxml_typer.gif)
 
 #### 介绍
