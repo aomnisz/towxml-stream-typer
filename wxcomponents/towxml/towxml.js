@@ -1,5 +1,6 @@
 //markdown语法特殊字符
 const mkSyntaxChars = [
+  "\n",
   "#",
   "*",
   "*",
@@ -55,7 +56,7 @@ Component({
   observers: {
     mdText: function (newVal) {
       if (!this.data.openTyper && newVal) {
-        this.setData({dataNodes:towxml(newVal, "markdown").children});
+        this.setData({ dataNodes: towxml(newVal, "markdown").children });
       }
       if (this.data.openTyper && newVal && !this.isStarted) {
         this.isStarted = true;
@@ -112,7 +113,7 @@ Component({
           return;
         }
         const singleChar = _this.data.mdText[c];
-        const lastSingleChar = _this.data.mdText[c];
+        const lastSingleChar = _this.data.mdText[c - 1];
         c++;
         if (singleChar == undefined) {
           return;
@@ -125,9 +126,9 @@ Component({
           curShowText = curShowText + singleChar;
           if (curShowText.length == 1) {
             const objTree = towxml(allText.substring(finishIndex), "markdown");
-            // console.log("当前finishIndex: ", finishIndex)
-            // console.log("当前字符串：\n", allText.substring(finishIndex))
-            // console.log("当前对象数据：", objTree.children)
+            console.log("当前finishIndex: ", finishIndex)
+            console.log("当前字符串：\n", allText.substring(finishIndex))
+            console.log("当前对象数据：", objTree.children)
             if (!flag) {
               flag = true;
               _this.dataNodes = objTree.children;
