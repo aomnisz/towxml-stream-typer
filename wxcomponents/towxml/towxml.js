@@ -126,9 +126,9 @@ Component({
           curShowText = curShowText + singleChar;
           if (curShowText.length == 1) {
             const objTree = towxml(allText.substring(finishIndex), "markdown");
-            console.log("当前finishIndex: ", finishIndex)
-            console.log("当前字符串：\n", allText.substring(finishIndex))
-            console.log("当前对象数据：", objTree.children)
+            // console.log("当前finishIndex: ", finishIndex)
+            // console.log("当前字符串：\n", allText.substring(finishIndex))
+            // console.log("当前对象数据：", objTree.children)
             if (!flag) {
               flag = true;
               _this.dataNodes = objTree.children;
