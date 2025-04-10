@@ -37,7 +37,7 @@ Component({
     },
     speed: {
       type: Number,
-      value: 15,
+      value: 20,
     },
     isFinish: {
       type: Boolean,
@@ -54,8 +54,8 @@ Component({
   },
   observers: {
     mdText: function (newVal) {
-      if (!this.data.openTyper) {
-        this.setData("dataNodes", towxml(newVal, "markdown"));
+      if (!this.data.openTyper && newVal) {
+        this.setData({dataNodes:towxml(newVal, "markdown").children});
       }
       if (this.data.openTyper && newVal && !this.isStarted) {
         this.isStarted = true;
@@ -104,6 +104,7 @@ Component({
           this.triggerEvent("finish", {
             message: "打字完毕！",
           });
+
           clearInterval(timer);
           return;
         }
@@ -118,7 +119,7 @@ Component({
         }
         typerText = typerText + singleChar;
         allText = allText + singleChar;
-        if (_this.isMkSyntaxChar(lastSingleChar,singleChar)) {
+        if (_this.isMkSyntaxChar(lastSingleChar, singleChar)) {
           curShowText = "";
         } else {
           curShowText = curShowText + singleChar;
@@ -167,18 +168,18 @@ Component({
               }
               let j = c;
               while (true) {
-                const tmpNodes = towxml(
-                  allText.substring(finishIndex, j),
-                  "markdown"
-                );
                 //allText[j - 1].match( /\r?\n/g) 这句话也是为了避免1. 2.这种有序列表情况触发的问题
-                if (
-                  tmpNodes.children.length <= curNewNodesNum - 1 &&
-                  allText[j - 1] &&
-                  allText[j - 1].match(/\r?\n/g)
-                ) {
-                  finishIndex = j;
-                  break;
+                //应该判断allText[j - 1] && allText[j - 1].match(/\r?\n/g) 和 tmpNodes.children.length <= curNewNodesNum - 1同时成立，拆成两个if,提高效率
+                if (allText[j - 1] &&
+                  allText[j - 1].match(/\r?\n/g)) {
+                  const tmpNodes = towxml(
+                    allText.substring(finishIndex, j),
+                    "markdown"
+                  );
+                  if (tmpNodes.children.length <= curNewNodesNum - 1) {
+                    finishIndex = j;
+                    break;
+                  }
                 }
                 j--;
               }
