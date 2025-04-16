@@ -1,7 +1,7 @@
 # towxml-steam-typer
 > ##### 代码刚写完没多久，还在持续地完善中，所以当前你下载的版本一定不是稳定版，记得定时更新下代码，由于markdown语法的灵活复杂性，某些情况下难免会出问题。
 
-> ##### 出问题请联系 QQ:3423729430 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 微信：zxx-wwj-wwj
+> ##### 出问题请联系 QQ:3423729430 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 微信：zxx-wwj-zbl
 
 > ##### 非常需要你的出错案例markdown文本
 
