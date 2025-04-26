@@ -1,7 +1,7 @@
 # towxml-steam-typer
 > ##### 代码刚写完没多久，还在持续地完善中，所以当前你下载的版本一定不是稳定版，记得定时更新下代码，由于markdown语法的灵活复杂性，某些情况下难免会出问题。
 
-> ##### 出问题请联系 QQ:3423729430 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 微信：zxx-zbl-wwj
+> ##### 出问题请联系 QQ:3423729430 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 微信：zxx-wwj-zbl
 
 > ##### 非常需要你的出错案例markdown文本
 
@@ -23,9 +23,9 @@
 | mdText      | {text：String}    | 对象里面的text属性就是你的总的markdown 文本字符串，将你的流式数据转化为字符串，将text属性设置为最新的全部文本|
 | speed       | Number            | 每多少秒打印一个字符，值越小打印越快，单位是毫秒，默认 10 毫秒打印一个字符 |10|
 | isFinish    | Boolean           | 流式接口是否完成，即当你的流式接口数据返回已经结束了，将该属性设置为 true |false|
-| openTyper   | Boolean           | 是否开启打字机，默认开启，如果你已经有完整 markdown 文本，想一次性渲染 |true|
+| openTyper   | Boolean           | 是否开启打字机，默认开启，如果你已经有完整 markdown 文本，想一次性渲染，就设为false |true|
 
-##### 注意：mdText类型就是一个<span style="color: rgb(192,0,0);">普通对象</span>，如果你是使用uniapp,不要把这个对象设置为响应式对象，如果你使用原生小程序，当你把对象中的text属性改变了，也不要setData，因为我通过对象的引用就可以获取到最新的text内容。你自动更新反而会大大影响性能
+##### 注意：mdText类型就是一个<span style="color: rgb(192,0,0);">普通对象</span>，如果你是使用uniapp,不要把这个对象设置为响应式对象，如果你使用原生小程序，当你把对象中的text属性改变了，也不要setData，因为我通过对象的引用就可以获取到最新的text内容。响应式或者自动更新反而会大大影响性能
 
 目前的事件有：
 
