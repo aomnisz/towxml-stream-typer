@@ -1,35 +1,63 @@
 # towxml-steam-typer
 > ##### 代码刚写完没多久，还在持续地完善中，所以当前你下载的版本一定不是稳定版，记得定时更新下代码，由于markdown语法的灵活复杂性，某些情况下难免会出问题。
 
-> ##### 出问题请联系 QQ:3423729430 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 微信：zxx-wwj-zbl
+> ##### 出问题请联系 QQ:3423729430 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 微信：zxx-wwj-zbl &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   QQ交流群：1044252428  欢迎过来和我交流
 
 > ##### 非常需要你的出错案例markdown文本
 
-> github地址：https://github.com/zhouzxx/towxml-stream-typer
 
 #### 介绍
-用来解决流式数据太长，[towxml](https://github.com/sbfkcel/towxml) 重复渲染相同文本，导致越来越发烫卡顿的问题。通过自定义文字组件进行***局部渲染连续文本***、***样式布局稳定的节点进行复用,不再进行重复转化和渲染***两大核心思想，保证无论markdown文本再长，开始和结束都一样的丝滑，全程没有发烫，目前再安卓手机上测试了10分钟的文本，前后速度一致，没有发烫
+用来解决流式数据太长，[towxml](https://github.com/sbfkcel/towxml) 重复渲染相同文本，导致越来越慢，越来越发烫卡顿的问题。在towmxl的基础上魔改了代码，通过自定义文字组件进行***局部渲染连续文本***、***样式布局稳定的节点进行复用,不再进行重复转化和渲染***两大核心思想，保证无论markdown文本再长，开始和结束都一样的丝滑,目前再安卓和苹果手机上测试了40分钟的长文本，前后速度一致
 
 #### 使用方式
-1. 将 wxcomponents 下载下来，放到微信小程序代码或者 uniapp 代码的指定文件夹，作为一个组件使用，这和之前在项目中引用 towxml 是一样的
-2. 和 towxml 的使用区别
+
+1. 将 wxcomponents 下载下来，放到微信小程序代码或者 uniapp 代码的指定文件夹，作为一个微信小程序组件使用，这和之前在项目中使用 towxml 是一样的，这里给大家写了一个uniapp和一个原生微信小程序的对话聊天使用示例,大家最好下载下来，模仿着写，里面的注释很详细，并有些最佳实践
+
+[uniapp使用示例](https://github.com/zhouzxx/towxml-stream-typer-uniapp-example)
+
+[原生微信小程序使用示例](https://github.com/zhouzxx/towxml-stream-typer-weChat-example)
+
+***强烈建议大家参考这两个示例的任何一个进行使用，看使用文档可能费劲，还不如直接看示例代码***
+
+
+#### 详细说明
 
 由于定制了 towxml 的代码，所以 towxml 组件的 prop 参数发生了改变
 
-目前的属性有：
+2.目前的属性有：
 
-| 属性名      | 类型               | 作用                                                         | 默认值 |
-|-------------|-------------------|--------------------------------------------------------------|-------|
-| mdText      | {text：String}    | 对象里面的text属性就是你的总的markdown 文本字符串，将你的流式数据转化为字符串，将text属性设置为最新的全部文本|
-| speed       | Number            | 每多少秒打印一个字符，值越小打印越快，单位是毫秒，默认 10 毫秒打印一个字符 |10|
-| isFinish    | Boolean           | 流式接口是否完成，即当你的流式接口数据返回已经结束了，将该属性设置为 true |false|
-| openTyper   | Boolean           | 是否开启打字机，默认开启，如果你已经有完整 markdown 文本，想一次性渲染，就设为false |true|
+| 属性名      | 类型               | 作用                                                                                                          | 默认值 |
+|-------------|-------------------|-------------------------------------------------------------------------------------------------------------- |-------|
+| id          | String            | towxml组件实例id,请务必保证这个id的唯一性，因为每个towmxl组件都有一份全局数据，以id作为key进行标识的，id重复会导致混乱|无默认值，需要你必填|
+| speed       | Number            | 每多少秒打印一个字符，值越小打印越快，单位是毫秒，默认 10 毫秒打印一个字符                                          |10|
+| openTyper   | Boolean           | 是否开启打字机，默认开启，如果你已经有完整 markdown 文本，想一次性渲染，可以设置为false                             |true|
+|theme        | String            | 支持dark 和 light 两种，推荐light                                                                              |light|
 
-##### 注意：mdText类型就是一个<span style="color: rgb(192,0,0);">普通对象</span>，如果你是使用uniapp,不要把这个对象设置为响应式对象，如果你使用原生小程序，当你把对象中的text属性改变了，也不要setData，因为我通过对象的引用就可以获取到最新的text内容。响应式或者自动更新反而会大大影响性能
 
-目前的事件有：
+3.目前的事件只有一个：
 
-finish：当打字机打印完毕，会发送 finish 事件，你可以通过该事件关闭滚动到底部的定时器等
+finish：当打字机打印完毕，会发送 finish 事件，你可以通过该事件关闭滚动到底部的定时器等善后工作
 
-3. uniapp的简单使用示例
-[uniapp使用示例](https://gitee.com/zhou-xuxiang/towxml-steam-typer-uniapp-example)
+4.目前你需要使用的全局函数（都从`towxml/globalCb.js`进行导入）
+
+| 函数名                 | 参数                                                                          | 作用                                                                                                                                                                       |
+|-----------------------|-------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------                                          |
+| setMdText             |（id,text） 第一个参数是towxml组件的id属性，第二个参数是最新的总markdown文本        | 设置当前一次问答中最新的总markdwon文本，每次当你流式接口给你推送新的数据了，你就调一下这个函数，这样对应id的towxml组件才能感知到最新的总文本                                          |
+| setStreamFinish       | (id)  towxml组件的id                                                           | 通知本次问答的流式接口已经结束，当本次回答所有markdown文本都已经全部拿到了，就调用这个函数，这样对应id的towxml就知道打印完当前这些文本，本次打印就完成了                               |
+| stopImmediatelyCb     | (id)  towxml组件的id                                                           | 立即终止本次打印，比如用户想问新的问题不想看这个回答，就可以调用这个函数对当前对应id的正在打字的towmxl实例进行马上终止打字                                                           |                                                                                                                    
+| scrollCb              | (e)   滚动事件参数                                                              | 你肯定会用scroll-view之类的组件包裹你的问答，请监听onScroll滚动事件，然后调用用这个函数，这样我才知道你滚动了屏幕，帮你做虚拟显示，节约内存，防止随着问答轮次增加而撑爆内存造成发烫闪退  |                
+ setQueryTowxmlNodeFn  | 其实不是个函数，你要把赋值一个函数给setQueryTowxmlNodeFn.value                    | 帮我通过createSelectorQuery查询towxml组件的节点，一边拿到top值，来进行虚拟显示，使用方式参考上面列举的uniapp或者原生微信小程序使用示例                                              |   
+                                                           
+
+> `scrollCb` 和 `setQueryTowxmlNodeFn` 这两个函数说白了就是你如果需要虚拟显示的功能，就要在你的代码里配合我做些工作,这两个都必须配合好，虚拟显示效果才会生效
+
+> `scrollCb`：因为我在组件内部是无法判断屏幕是否滚动，所以需要你在对应的scroll事件中回调这个函数，同时把事件参数传进来，我需要通过事件参数来判断滚动方向，已进行优先显示哪些内容
+
+> `setQueryTowxmlNodeFn`： 由于微信小程序的限制，我在一个towxml实例中，是无法通过createSelectorQuery查询到其他towxml的对应dom节点，所以我希望你来帮我查，这样一次性查到所有的towmxl实例的top之后，我就可以进行虚拟显示了
+
+> 具体怎么操作，参考 [uniapp使用示例](https://github.com/zhouzxx/towxml-stream-typer-uniapp-example) 或者 [原生微信小程序使用示例](https://github.com/zhouzxx/towxml-stream-typer-weChat-example) 使用示例，其实很简单的
+
+5.目前存在的bug
+当内容很多时，安卓手机进行多次连续暴力高速的滚动，可能会出现闪退，模拟器和苹果手机不会，目前正在解决
+
+6.后续代码更新了，你就把这个towxml文件夹下载下来，替换你项目中的towmxl文件夹就行了
