@@ -7,6 +7,7 @@
 
 > ##### 非常需要你的出错案例markdown文本
 
+[towxml源码及基于此的流式打字机源码讲解视频](https://www.bilibili.com/video/BV1hE3Fz8EVu/?spm_id_from=333.337.search-card.all.click&vd_source=0509c88161931dba2d7404110af17c0f)
 
 ### 一、介绍
 用来解决流式数据太长，[towxml](https://github.com/sbfkcel/towxml) 重复渲染相同文本，导致越来越慢，越来越发烫卡顿的问题。在towmxl的基础上魔改了代码，通过自定义文字组件进行***局部渲染连续文本***、***样式布局稳定的节点进行复用,不再进行重复转化和渲染***两大核心思想，保证无论markdown文本再长，开始和结束都一样的丝滑,目前再安卓和苹果手机上测试了40分钟的长文本，前后速度一致
