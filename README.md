@@ -1,9 +1,13 @@
-[演示图片 点击查看效果（由于网络问题，gif动图可能不一定能良好地展示，你直接下载示例在自己电脑上跑更直接）](./towxml_typer.gif)
+基于 zhouzxx/towxml-stream-typer 进行定制，去掉了 echarts
+
+以下为原 README :
+
+----
 
 # towxml-steam-typer
 > ##### 代码刚写完没多久，还在持续地完善中，所以当前你下载的版本一定不是稳定版，记得定时更新下代码，由于markdown语法的灵活复杂性，某些情况下难免会出问题。
 
-> ##### 出问题请联系 微信：zxx-wwj-zbl &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+> ##### 出问题请联系 微信：zxx-wwj-zbl
 
 > ##### 非常需要你的出错案例markdown文本
 
